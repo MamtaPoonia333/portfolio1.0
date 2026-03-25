@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/imgs/favicon (1).ico" type="image/x-icon">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <title>Mamta's-Portfolio</title>
+</head>
+<body>
+   <main>
+        <!-- desktop -->
+        <div id="desktop">
+        </div>
+        <div class="window" id="finderWin" data-title="Finder">
+            <div class="tittle-bar">
+                <div class="buttons">
+                    <span class="btn close" id="finderWin1"></span>
+                    <span class="btn minimize" id="finderWin2"></span>
+                    <span class="btn maximize" id="finderWin3"></span>
+                </div>
+                <p>Finder</p>
+            </div>
+        
+            <div class="finder-app">
+                <div class="finder-sidebar">
+                    <p class="side-item active" data-folder="desktop">Desktop</p>
+                    <p class="side-item" data-folder="documents">Documents</p>
+                    <p class="side-item" data-folder="downloads">Downloads</p>
+                    <p class="side-item" data-folder="photos">Photos</p>
+                </div>
+        
+                <div class="finder-content">
+                    <div class="finder-grid" id="finderGrid"></div>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="notesWin" data-title="Notes">
+            <div class="tittle-bar">
+                <div class="buttons">
+                    <span id="notesWin1" class="btn close" ></span>
+                    <span id="notesWin2" class="btn minimize" ></span>
+                    <span id="notesWin3" class="btn maximize" ></span>
+                </div>
+                <p>Notes</p>
+            </div>
+            <div class="content">
+                <textarea placeholder="HELLO..."></textarea>
+            </div>
+        </div>
+        <div class="window" id="browserWin" data-title="Browser">
+            <div class="tittle-bar">
+                <div class="buttons">
+                    <span id="browserWin1" class="btn close"></span>
+                    <span id="browserWin2" class="btn minimize"></span>
+                    <span id="browserWin3" class="btn maximize"></span>
+                </div>
+                <p>Browser</p>
+            </div>
+        
+            <div class="content browser-app">
+                <div class="browser-bar">
+                    <input type="text" id="browserInput" placeholder="Enter URL (example.com)">
+                    <button id="goBtn">Go</button>
+                </div>
+        
+                <iframe id="browserFrame" src="https://example.com"></iframe>
+            </div>
+        </div>
+        <div class="window" id="photosWin" data-title="Photos">
+    
+            <div class="tittle-bar">
+                <div class="buttons">
+                    <span id="photosWin1" class="btn close"></span>
+                    <span id="photosWin2" class="btn minimize"></span>
+                    <span id="photosWin3" class="btn maximize"></span>
+                </div>
+                <p>Photos</p>
+            </div>
+        
+            <div class="content photos-app">
+        
+                <!-- GALLERY VIEW -->
+                <div class="gallery-view">
+                    <div class="photo-grid" id="photoGrid"></div>
+                </div>
+        
+                <!-- VIEWER MODE -->
+                <div class="viewer-view" id="viewerView">
+                    <button id="backBtn">← Back</button>
+                    <img id="viewerImage">
+                </div>
+        
+            </div>
+        
+        </div>
+        <div class="window" id="terminalWin" data-title="Terminal">
+            <div class="tittle-bar">
+                <div class="buttons">
+                    <span id="terminalWin1" class="btn close"></span>
+                    <span id="terminalWin2" class="btn minimize"></span>
+                    <span id="terminalWin3" class="btn maximize"></span>
+                </div>
+                <p>Terminal</p>
+            </div>
+            <div class="terminal-content">
+                <div id="terminalOutput">
+                    <div class="terminal-input-line">
+                        <span class="prompt">mamta@mac ~ %</span>
+                        <input type="text" id="terminalInput" autofocus />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="cameraWin" data-title="Camera">
+            <div class="tittle-bar">
+                <div class="buttons">
+                    <span id="cameraWin1" class="btn close"></span>
+                    <span id="cameraWin2" class="btn minimize"></span>
+                    <span id="cameraWin3" class="btn maximize"></span>
+                </div>
+                <p>Camera</p>
+            </div>
+        
+            <div class="content camera-only">
+                <button id="captureBtn">📸 Take Photo</button>
+                <canvas id="cameraCanvas" style="display:none;"></canvas>
+                <video id="cameraVideo" autoplay playsinline ></video>
+            </div>
+        </div>
+
+        <div class="dock">
+            <div class="dock-icon finder">
+                <img src="/imgs/finder-2025-11-13.webp" alt="">
+            </div>
+            <div class="dock-icon nots">
+                <img src="/imgs/notes-2025-11-13.webp" alt="">
+            </div>
+            <!-- <div class="dock-icon brwsr">
+                <img src="/imgs/safari-2025-11-14.webp" alt="">
+            </div> -->
+            <div class="dock-icon photos">
+                <img src="/imgs/photos-2025-11-14.webp" alt="">
+            </div>
+             <div class="dock-icon">
+                <a href="https://www.linkedin.com/in/mamta-poonia-728498326/"><img src="/imgs/Limav-Flat-Gradient-Social-Linkedin.512.png" alt=""></a>
+            </div>
+            <div class="dock-icon">
+                <a href="https://github.com/MamtaPoonia333"> <img src="/imgs/github-desktop-2021-05-20.webp" alt=""></a>
+            </div>
+            <!-- <div class="dock-icon">
+               <a href="https://www.instagram.com/github/"> <img src="/imgs/instagram-2022-05-19.webp" alt=""></a>
+            </div> -->
+            <div class="dock-icon terminal">
+                <img src="/imgs/terminal.webp" alt="">
+            </div>
+            <div class="dock-icon camera">
+                <img src="/imgs/camera.webp" alt="">
+            </div>
+        </div>
+        <div class="topbar">
+            <div class="left">
+                <div class="ic">
+                    <i class="ri-apple-fill"></i>
+                </div>
+                <div class="name">
+                    <h4>Mamta's Portfolio</h4>
+                </div>
+                <a href="https://www.linkedin.com/in/mamta-poonia-728498326/">Linkedin</a>
+                <a href="https://github.com/MamtaPoonia333">Github</a>
+                <a href="https://leetcode.com/u/Mamta_Poonia//">Leetcode</a>
+            </div>
+            <div class="right">
+                <i class="ri-wifi-fill"></i>
+                <i class="ri-search-line"></i>
+                <i class="ri-equalizer-2-fill"></i>
+                <div class="time">
+                    <p>Wed</p>
+                    <p>7 May</p>
+                    <p>1:37PM</p>
+                </div>
+            </div>
+        </div>
+        <div class="port">
+            <p>Hey, I'm Mamta! welcome to my </p>
+            <h1>
+                <span>p</span>
+                <span>o</span>
+                <span>r</span>
+                <span>t</span>
+                <span>f</span>
+                <span>o</span>
+                <span>l</span>
+                <span>i</span>
+                <span>o.</span>
+            </h1>
+        </div>
+
+        <ul id="contextMenu">
+            <li id="newFolderBtn" >New Folder</li>
+            <li onclick="location.reload()">Refresh</li>
+            <li  onclick="alert('Change Wallpaper!') , changeWal()">Change Wallpaper</li>
+        </ul>
+        <ul id="folderMenu">
+            <li id="renameFolder">Rename</li>
+            <li id="deleteFolder">Delete</li>
+        </ul>
+   </main>
+   <div class="overlay">
+    <div class="loader">
+        <div class="logo-1">
+            <i class="ri-apple-fill"></i>
+        </div>
+        <div class="outer">
+            <div class="inner"></div>
+        </div>
+    </div>
+</div>
+     
+
+
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

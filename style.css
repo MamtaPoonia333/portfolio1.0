@@ -1,0 +1,692 @@
+@font-face {
+  font-family: f1;
+  src: url(/fonts/absans-regular.otf);
+}
+@font-face {
+  font-family: f2;
+  src: url(/fonts/NeutralFace.otf);
+}
+@font-face {
+  font-family: f3;
+  src: url(/fonts/RemboyRegular.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  height: 100vh;
+  overflow: hidden;
+  background: url(/imgs/wal10.jpg);
+  background-size: cover;
+  color: black;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+main #desktop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+main .window {
+  width: 500px;
+  height: 300px;
+  background: white;
+  border-radius: 13px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 130px;
+  left: 150px;
+  transition: transform 0.22s ease, opacity 0.22s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+  display: none;
+  z-index: 1;
+  opacity: 1;
+}
+main .window[data-minimized=true] {
+  pointer-events: none;
+}
+main .window .tittle-bar {
+  height: 35px;
+  background: #f0f0f0;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  cursor: grab;
+}
+main .window .tittle-bar p {
+  margin-left: 12px;
+  font-weight: 600;
+  color: #333;
+}
+main .window .tittle-bar .buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+main .window .tittle-bar .buttons .btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+main .window .tittle-bar .buttons .close {
+  background-color: #ff5f57;
+}
+main .window .tittle-bar .buttons .minimize {
+  background-color: #ffbd2e;
+}
+main .window .tittle-bar .buttons .maximize {
+  background-color: #28c940;
+}
+main .window .content {
+  padding: 20px;
+}
+main .window .content textarea {
+  width: 95%;
+  height: 200px;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+}
+main #terminalWin {
+  width: 600px;
+  height: 350px;
+}
+main #terminalWin .terminal-content {
+  background: #000;
+  color: #00ff88;
+  height: 100%;
+  padding: 15px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+main #terminalWin .terminal-content #terminalOutput {
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+main #terminalWin .terminal-content .terminal-input-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+main #terminalWin .terminal-content .terminal-input-line .prompt {
+  color: #00ff88;
+}
+main #terminalWin .terminal-content .terminal-input-line input {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: #00ff88;
+  font-family: monospace;
+  font-size: 0.9rem;
+  flex: 1;
+}
+main #terminalWin .terminal-content .terminal-input-line input:focus {
+  outline: none;
+  box-shadow: none;
+}
+main #cameraWin {
+  width: 500px;
+  height: 400px;
+  z-index: 9999;
+}
+main #cameraWin .camera-only {
+  position: relative;
+  height: calc(100% - 35px);
+  background: #000;
+}
+main #cameraWin .camera-only video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+main #cameraWin .camera-only #captureBtn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+main .finder-app {
+  display: flex;
+  height: calc(100% - 35px);
+}
+main .finder-app .finder-sidebar {
+  width: 160px;
+  background: #f3f3f3;
+  padding: 15px;
+}
+main .finder-app .finder-sidebar .side-item {
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+main .finder-app .finder-sidebar .side-item:hover {
+  color: #000;
+  transform: translateX(3px);
+}
+main .finder-app .finder-sidebar .side-item.active {
+  font-weight: 600;
+  color: #000;
+}
+main .finder-app .finder-content {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+}
+main .finder-app .finder-content .finder-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+main .finder-app .finder-content .finder-grid .finder-file {
+  width: 80px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+main .finder-app .finder-content .finder-grid .finder-file:hover {
+  transform: scale(1.05);
+}
+main .finder-app .finder-content .finder-grid .finder-file img {
+  width: 50px;
+  pointer-events: none;
+}
+main .finder-app .finder-content .finder-grid .finder-file p {
+  font-size: 0.75rem;
+  margin-top: 5px;
+  pointer-events: none;
+}
+main #browserWin .browser-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main #browserWin .browser-bar {
+  padding: 8px;
+  background: #f1f1f1;
+  display: flex;
+  gap: 8px;
+}
+main #browserWin .browser-bar input {
+  flex: 1;
+  padding: 6px;
+}
+main #browserWin .browser-bar button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+main #browserWin #browserFrame {
+  flex: 1;
+  border: none;
+}
+main #photosWin .photos-app {
+  position: relative;
+  overflow-y: auto;
+  height: calc(100% - 35px);
+  overflow-x: hidden;
+}
+main #photosWin .photos-app .gallery-view,
+main #photosWin .photos-app .viewer-view {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+main #photosWin .photos-app .gallery-view .photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+main #photosWin .photos-app .gallery-view .photo-grid img {
+  width: 120px;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+  background-color: #F4F4DB;
+  padding: 0.5rem 0.5rem;
+}
+main #photosWin .photos-app .gallery-view .photo-grid img:hover {
+  transform: scale(1.05);
+}
+main #photosWin .photos-app .gallery-view.slide-left {
+  transform: translateX(-110%);
+}
+main #photosWin .photos-app .viewer-view {
+  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+}
+main #photosWin .photos-app .viewer-view img {
+  max-width: 100%;
+  max-height: 100%;
+}
+main #photosWin .photos-app .viewer-view.active {
+  transform: translateX(0%);
+}
+main #photosWin .photos-app .viewer-view #backBtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+}
+main #photosWin .photos-app .viewer-view #backBtn:hover {
+  background: #f0f0f0;
+}
+main .folder {
+  position: absolute;
+  width: 80px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transition: transform 0.15s ease;
+  z-index: 9999;
+}
+main .folder:hover {
+  transform: scale(1.05);
+}
+main .folder img {
+  width: 60px;
+  pointer-events: none;
+}
+main .folder p {
+  font-size: 0.75rem;
+  color: white;
+  margin-top: 5px;
+  pointer-events: none;
+}
+main #folderMenu {
+  position: absolute;
+  background: white;
+  list-style: none;
+  padding: 8px 0;
+  width: 150px;
+  display: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  z-index: 999999;
+}
+main #folderMenu li {
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #222;
+}
+main #folderMenu li:hover {
+  background: #f2f2f2;
+}
+main .dock {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9998;
+}
+main .dock .dock-icon:hover img {
+  transform: scale(1.28);
+}
+main .dock .dock-icon img {
+  width: 50px;
+  transition: transform 0.16s ease;
+  cursor: pointer;
+}
+main .dock .dock-icon:nth-child(4) img {
+  width: 42.7px;
+}
+main #contextMenu {
+  position: absolute;
+  background: white;
+  list-style: none;
+  padding: 10px 0;
+  width: 180px;
+  display: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  z-index: 99999;
+}
+main #contextMenu li {
+  padding: 10px 14px;
+  cursor: pointer;
+  color: #222;
+}
+main #contextMenu li:hover {
+  background: #f6f6f6;
+}
+main .topbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.388);
+  backdrop-filter: blur(15px);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+main .topbar .left {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+}
+main .topbar .left .ic i {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .topbar .left .name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .topbar .left .name h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+main .topbar .left a {
+  text-decoration: none;
+  color: black;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+main .topbar .right {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+}
+main .topbar .right i {
+  font-size: 1rem;
+  cursor: pointer;
+}
+main .topbar .right .time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+main .topbar .right .time p {
+  font-size: 0.9rem;
+}
+main .port {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  color: whitesmoke;
+}
+main .port p {
+  font-family: f1;
+  font-size: 1.5rem;
+  text-align: center;
+}
+main .port h1 {
+  font-size: 7rem;
+  font-family: f1;
+  display: flex;
+  line-height: 9.5rem;
+}
+main .port h1 span {
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+main .port h1 span:hover {
+  transform: scale(1.2);
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000000;
+}
+.overlay .loader {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.overlay .loader .logo-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay .loader .logo-1 i {
+  font-size: 3rem;
+  color: white;
+}
+.overlay .loader .outer {
+  height: 0.3rem;
+  width: 20%;
+  border-radius: 50px;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+.overlay .loader .outer .inner {
+  height: 100%;
+  width: 0%;
+  background-color: white;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-size: 1.5rem;
+  transition: width 0.2s ease;
+}
+
+@media (max-width: 600px) {
+  main .topbar .left {
+    gap: 1rem;
+  }
+  main .topbar .left .ic i {
+    font-size: 1.3rem;
+  }
+  main .topbar .left .name h4 {
+    font-size: 0.9rem;
+  }
+  main .topbar .left a {
+    font-size: 0.75rem;
+  }
+  main .topbar .right {
+    display: none;
+  }
+  main .port {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  main .port p {
+    font-size: 1.4rem;
+  }
+  main .port h1 {
+    font-size: 4rem;
+    line-height: 6.5rem;
+  }
+  main .dock {
+    bottom: 10px;
+    left: 50%;
+  }
+  main .dock .dock-icon img {
+    width: 40px;
+  }
+  main .dock .dock-icon:nth-child(4) img {
+    width: 32.7px;
+  }
+  main .window {
+    width: 350px;
+    height: 220px;
+    background: white;
+    border-radius: 13px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 130px;
+    left: 150px;
+    transition: transform 0.22s ease, opacity 0.22s ease, box-shadow 0.15s ease;
+    overflow: hidden;
+    display: none;
+    z-index: 1;
+    opacity: 1;
+  }
+  main .window[data-minimized=true] {
+    pointer-events: none;
+  }
+  main .window .tittle-bar {
+    height: 35px;
+    background: #f0f0f0;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    cursor: grab;
+  }
+  main .window .tittle-bar p {
+    margin-left: 12px;
+    font-weight: 600;
+    color: #333;
+  }
+  main .window .tittle-bar .buttons {
+    display: flex;
+    gap: 0.4rem;
+  }
+  main .window .tittle-bar .buttons .btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+  }
+  main .window .tittle-bar .buttons .close {
+    background-color: #ff5f57;
+  }
+  main .window .tittle-bar .buttons .minimize {
+    background-color: #ffbd2e;
+  }
+  main .window .tittle-bar .buttons .maximize {
+    background-color: #28c940;
+  }
+  main .window .content {
+    padding: 20px;
+  }
+  main .window .content textarea {
+    width: 95%;
+    height: 200px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+  }
+  main #terminalWin {
+    width: 350px;
+    height: 220px;
+  }
+  main #terminalWin .terminal-content {
+    background: #000;
+    color: #00ff88;
+    height: 100%;
+    padding: 15px;
+    font-family: monospace;
+    font-size: 0.9rem;
+  }
+  main #terminalWin .terminal-content #terminalOutput {
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+  main #terminalWin .terminal-content .terminal-input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  main #terminalWin .terminal-content .terminal-input-line .prompt {
+    color: #00ff88;
+  }
+  main #terminalWin .terminal-content .terminal-input-line input {
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #00ff88;
+    font-family: monospace;
+    font-size: 0.9rem;
+    flex: 1;
+  }
+  main #terminalWin .terminal-content .terminal-input-line input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  main #cameraWin {
+    width: 350px;
+    height: 220px;
+    z-index: 9999;
+  }
+  main #cameraWin .camera-only {
+    position: relative;
+    height: calc(100% - 35px);
+    background: #000;
+  }
+  main #cameraWin .camera-only video {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    pointer-events: none;
+  }
+  main #cameraWin .camera-only #captureBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}/*# sourceMappingURL=style.css.map */
