@@ -181,7 +181,7 @@ git clone https://github.com/koder-M/WebOs-Portfolio.git
 
 ## 👨‍💻 Author
 
-**Chetan Kumawat**  
+**Mamtaa Poonia**  
 Frontend Developer | UI Engineer | System Design Learner  
 
 Focused on building interactive, system-level web experiences using pure JavaScript.

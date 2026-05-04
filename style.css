@@ -196,6 +196,82 @@ main .finder-app .finder-content .finder-grid {
   flex-wrap: wrap;
   gap: 15px;
 }
+main .finder-app .finder-content .finder-grid .finder-card {
+  flex: 1 1 calc(50% - 15px);
+  min-width: 240px;
+  border-radius: 14px;
+  padding: 14px;
+  background: linear-gradient(180deg, #ffffff, #f6f6f6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+main .finder-app .finder-content .finder-grid .project-card .project-preview {
+  height: 90px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #111827, #374151);
+  color: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+main .finder-app .finder-content .finder-grid .finder-card h4 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+main .finder-app .finder-content .finder-grid .finder-card p {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #4b4b4b;
+}
+main .finder-app .finder-content .finder-grid .finder-card .project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+main .finder-app .finder-content .finder-grid .finder-card .project-tags .project-tag {
+  font-size: 0.72rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e9edf2;
+  color: #222;
+}
+main .finder-app .finder-content .finder-grid .project-links {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+main .finder-app .finder-content .finder-grid .project-links a {
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #111;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  padding: 7px 12px;
+}
+main .finder-app .finder-content .finder-grid .project-links a:hover {
+  background: #f4f4f4;
+}
+main .finder-app .finder-content .finder-grid .skill-chip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #1f2937;
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+  main .finder-app .finder-content .finder-grid .finder-card {
+    padding: 12px;
+  }
+  main .finder-app .finder-content .finder-grid .skill-chip {
+    padding: 9px 12px;
+  }
 main .finder-app .finder-content .finder-grid .finder-file {
   width: 80px;
   text-align: center;

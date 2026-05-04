@@ -535,7 +535,7 @@ function createNewInputLine(){
     let inputLine = document.createElement("div");
     inputLine.className = "terminal-input-line";
     inputLine.innerHTML = `
-        <span class="prompt">chetan@mac ~ %</span>
+        <span class="prompt">mamtaa@mac ~ %</span>
         <input type="text" class="terminalInput" />
     `;
     terminalOutput.appendChild(inputLine);
@@ -554,7 +554,7 @@ function attachTerminalEvent(inputElement){
             if(input === "") return;
 
             let line = document.createElement("div");
-            line.textContent = "chetan@mac ~ % " + input;
+            line.textContent = "mamtaa@mac ~ % " + input;
             terminalOutput.appendChild(line);
 
             this.parentElement.remove();
@@ -776,6 +776,47 @@ const finderData = {
     ],
     photos: [
         { name: "Gallery", type: "image", app: "photosWin" }
+    ],
+    projects: [
+        // PROJECT TEMPLATE - Copy this and fill with your own details
+        // {
+        //     name: "Project Name",
+        //     type: "project",
+        //     description: "Brief description of what the project does",
+        //     tech: ["Technology1", "Technology2", "Technology3"],
+        //     github: "https://github.com/yourusername/repo",
+        //     live: "https://project-demo-link.com",
+        //     preview: "Project Preview Text"
+        // },
+        
+        // Add your projects here following the template above
+    ],
+    skills: [
+        { name: "JavaScript", type: "skill" },
+        { name: "Java", type: "skill" },
+        { name: "C++", type: "skill" },
+        { name: "SQL", type: "skill" },
+        { name: "TypeScript", type: "skill" },
+        { name: "React.js", type: "skill" },
+        { name: "HTML5", type: "skill" },
+        { name: "CSS3", type: "skill" },
+        { name: "Tailwind CSS", type: "skill" },
+        { name: "SCSS", type: "skill" },
+        { name: "Node.js", type: "skill" },
+        { name: "Express.js", type: "skill" },
+        { name: "REST APIs", type: "skill" },
+        { name: "JWT Authentication", type: "skill" },
+        { name: "MongoDB", type: "skill" },
+        { name: "Mongoose", type: "skill" },
+        { name: "Git", type: "skill" },
+        { name: "GitHub", type: "skill" },
+        { name: "Postman", type: "skill" },
+        { name: "Render", type: "skill" },
+        { name: "Vercel", type: "skill" },
+        { name: "Netlify", type: "skill" },
+        { name: "Responsive Design", type: "skill" },
+        { name: "API Integration", type: "skill" },
+        { name: "Animations", type: "skill" }
     ]
 };
 
@@ -853,6 +894,33 @@ function renderFinder(folder) {
     finderGrid.innerHTML = "";
 
     finderData[folder].forEach(item => {
+
+        if (item.type === "project") {
+            const div = document.createElement("div");
+            div.className = "finder-card project-card";
+            div.innerHTML = `
+                <div class="project-preview">${item.preview || "Project"}</div>
+                <h4>${item.name}</h4>
+                <p>${item.description}</p>
+                <div class="project-tags">
+                    ${(item.tech || []).map(tag => `<span class="project-tag">${tag}</span>`).join("")}
+                </div>
+                <div class="project-links">
+                    <a href="${item.github}" target="_blank" rel="noreferrer">GitHub</a>
+                    <a href="${item.live}" target="_blank" rel="noreferrer">Live</a>
+                </div>
+            `;
+            finderGrid.appendChild(div);
+            return;
+        }
+
+        if (item.type === "skill") {
+            const div = document.createElement("div");
+            div.className = "skill-chip";
+            div.textContent = item.name;
+            finderGrid.appendChild(div);
+            return;
+        }
 
         const div = document.createElement("div");
         div.className = "finder-file";
@@ -938,3 +1006,28 @@ window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(changeWal, 200);
 });
+
+const dayText = document.getElementById("dayText");
+const dateText = document.getElementById("dateText");
+const timeText = document.getElementById("timeText");
+
+function updateTopbarClock() {
+    const now = new Date();
+
+    const day = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(now);
+    const date = new Intl.DateTimeFormat("en-US", {
+        day: "numeric",
+        month: "short"
+    }).format(now);
+    const time = new Intl.DateTimeFormat("en-US", {
+        hour: "numeric",
+        minute: "2-digit"
+    }).format(now).replace(" ", "");
+
+    dayText.textContent = day;
+    dateText.textContent = date;
+    timeText.textContent = time;
+}
+
+updateTopbarClock();
+setInterval(updateTopbarClock, 1000);
