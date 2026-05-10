@@ -527,7 +527,7 @@ document.getElementById("terminalWin3").addEventListener("click", function(){
 let commands = {
     about: "Hi, I'm Mamta. I build interactive MacOS-style web experiences.",
     name: "Mamta",
-    skills: "HTML, CSS, JavaScript, React , UI Engineering",
+    skills: "Skills are loading...",
     help: "Commands: about, name, skills, open finder, open notes, open photos, clear"
 };
 
@@ -769,7 +769,13 @@ const finderData = {
         { name: "Project.js", type: "file", content: "console.log('Hello World');" }
     ],
     documents: [
-        { name: "Resume.pdf", type: "file", content: "Mamta - Frontend Developer Resume" }
+        {
+            name: "Resume.pdf",
+            type: "file",
+            content: "Mamta - Frontend Developer Resume",
+            src: "resume.pdf",
+            downloadName: "Mamta-Poonia-Resume.pdf"
+        }
     ],
     downloads: [
         { name: "Design.png", type: "app", src: "imgs/default1.jpg" }
@@ -778,18 +784,42 @@ const finderData = {
         { name: "Gallery", type: "image", app: "photosWin" }
     ],
     projects: [
-        // PROJECT TEMPLATE - Copy this and fill with your own details
-        // {
-        //     name: "Project Name",
-        //     type: "project",
-        //     description: "Brief description of what the project does",
-        //     tech: ["Technology1", "Technology2", "Technology3"],
-        //     github: "https://github.com/yourusername/repo",
-        //     live: "https://project-demo-link.com",
-        //     preview: "Project Preview Text"
-        // },
-        
-        // Add your projects here following the template above
+        {
+            name: "ProDash",
+            type: "project",
+            description: "Static single-page dashboard built with vanilla frontend stack.",
+            tech: ["HTML", "CSS", "JavaScript"],
+            github: "https://github.com/MamtaPoonia333/ProDash",
+            live: "https://prodash-o4az.onrender.com",
+            preview: "Dashboard UI"
+        },
+        {
+            name: "InstaClone",
+            type: "project",
+            description: "Full-stack social media clone with auth, uploads, and API-driven feed.",
+            tech: ["React (Vite)", "Node.js", "Express", "MongoDB", "ImageKit", "JWT"],
+            github: "https://github.com/MamtaPoonia333/instaClone",
+            live: "https://instaclone-1-0zf7.onrender.com/",
+            preview: "Full-Stack App"
+        },
+        {
+            name: "Pixel13",
+            type: "project",
+            description: "Canvas API based image editor with custom editing interactions.",
+            tech: ["HTML", "SCSS", "CSS", "JavaScript", "Canvas API"],
+            github: "https://github.com/MamtaPoonia333/pixel13",
+            live: "https://pixel13.onrender.com",
+            preview: "Image Editor"
+        },
+        {
+            name: "LibraryManagement",
+            type: "project",
+            description: "Library management system with React frontend and Spring Boot backend.",
+            tech: ["React (Vite)", "Tailwind CSS", "Java 21", "Spring Boot", "Maven", "CSV Persistence"],
+            github: "https://github.com/MamtaPoonia333/LibraryManagement",
+            live: "",
+            preview: "In Progress"
+        }
     ],
     skills: [
         { name: "JavaScript", type: "skill" },
@@ -819,6 +849,9 @@ const finderData = {
         { name: "Animations", type: "skill" }
     ]
 };
+
+// Keep terminal skills command in sync with Finder > Skills
+commands.skills = finderData.skills.map(skill => skill.name).join(", ");
 
 
 
@@ -907,7 +940,7 @@ function renderFinder(folder) {
                 </div>
                 <div class="project-links">
                     <a href="${item.github}" target="_blank" rel="noreferrer">GitHub</a>
-                    <a href="${item.live}" target="_blank" rel="noreferrer">Live</a>
+                    ${item.live ? `<a href="${item.live}" target="_blank" rel="noreferrer">Live</a>` : `<span class="project-coming-soon">Live: Not deployed yet</span>`}
                 </div>
             `;
             finderGrid.appendChild(div);
@@ -945,7 +978,19 @@ function renderFinder(folder) {
 
             // 🔥 Normal File
             else if (item.type === "file") {
-                createAppWindow(item.name, `<p>${item.content}</p>`);
+                if (item.src && item.name.toLowerCase().endsWith(".pdf")) {
+                    createAppWindow(item.name, `
+                        <div style="display:flex; flex-direction:column; gap:12px; height:100%;">
+                            <div style="display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap;">
+                                <a href="${item.src}" target="_blank" rel="noreferrer" style="padding:8px 12px; border-radius:10px; background:#111; color:#fff; text-decoration:none; font-size:14px;">Open PDF</a>
+                                <a href="${item.src}" download="${item.downloadName || item.name}" style="padding:8px 12px; border-radius:10px; background:#fff; color:#111; text-decoration:none; font-size:14px; border:1px solid #ddd;">Download</a>
+                            </div>
+                            <iframe src="${item.src}" title="${item.name}" style="width:100%; height:calc(100vh - 230px); min-height:520px; border:1px solid rgba(255,255,255,0.08); border-radius:14px; background:#fff;"></iframe>
+                        </div>
+                    `);
+                } else {
+                    createAppWindow(item.name, `<p>${item.content}</p>`);
+                }
             }
 
         });
